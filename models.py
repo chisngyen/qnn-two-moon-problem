@@ -133,6 +133,7 @@ def create_quantum_model(n_qubits=2, n_layers=6):
             
         def forward(self, x):
             x = self.input_layer(x)
+            x = torch.tanh(x) * np.pi  # Map to [-π, π]
             x = self.qlayer(x)
             x = self.output_layer(x)
             return x
